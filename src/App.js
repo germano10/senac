@@ -13,26 +13,31 @@ import {Menu} from './styles';
 
 import Cadastro from './components/Produtos/Cadastro/index';
 import Lista from './components/Produtos/Lista/index';
+import Carregar from './components/Produtos/Carregar/index';
 
 function App() {
   return (
     <div>
+      
       <Menu>
         <Link to="/">Lista de Produtos</Link>
         <Link to="/cadastro">Cadastrar Produto</Link>
       </Menu>
+
       <Switch>
-        {/* <Route path="/cadastro/:id">
-          <ViewCadastro />
-        </Route> */}
         <Route path="/cadastro">
           <Cadastro />
+        </Route>
+
+        <Route path="/carregar/:id">
+          <Carregar />
         </Route>
 
         <Route path="/">
           <Lista />
         </Route>
       </Switch>
+
     </div>
   );
 }
