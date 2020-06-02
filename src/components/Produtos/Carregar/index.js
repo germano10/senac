@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import Swal from 'sweetalert2'
 
 import { Input, Container, Textarea, Button, Form } from './styles';
 
@@ -45,7 +46,7 @@ const Carregar = () => {
         for(var i = 0; i < input.length; i++){
             let nomeCampo = input[i].name;
             if(!input[i].value.trim()){
-                alert(`O campo ${nomeCampo} está vazio!`);
+                msg(`O campo ${nomeCampo} está vazio!`);
                 input[i].focus();
                 return false;
             }
@@ -91,6 +92,17 @@ const Carregar = () => {
                 inputs[i].style.padding = 5;
             }
         }
+    }
+
+    const msg = (msg) => {
+        return(
+            Swal.fire({
+                title: 'Error!',
+                text: msg,
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            })
+        )
     }
 
     const submit = (e) => {

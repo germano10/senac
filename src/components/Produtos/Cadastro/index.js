@@ -1,4 +1,5 @@
 import React, {useState, useCallback} from 'react';
+import Swal from 'sweetalert2'
 
 import {Container, Form, Input, Textarea, Button} from './styles';
 
@@ -43,8 +44,8 @@ const Cadastro = () => {
         for(var i = 0; i < input.length; i++){
             let nomeCampo = input[i].name;
             if(!input[i].value.trim()){
-                alert(`O campo ${nomeCampo} está vazio!`);
                 input[i].focus();
+                msg(`O campo ${nomeCampo} está vazio!`)
                 return false;
             }
         }
@@ -72,11 +73,23 @@ const Cadastro = () => {
                 localStorage.removeItem("produtos");
                 localStorage.setItem("produtos", JSON.stringify(arrayItens));
                 setValue(initValue);
+                msg("Cadastrado com sucesso", "success", 'Sucesso!');
             }else{
-                alert("Ops! esse SKU já está cadastrado");
+                msg("Ops! esse SKU já está cadastrado");
             }
         }
     })
+
+    const msg = (msg, type = "error", title = "Erro!") => {
+        return(
+            Swal.fire({
+                title: title,
+                text: msg,
+                icon: type,
+                confirmButtonText: 'Cool'
+            })
+        )
+    }
  
     return (
         <Container>
